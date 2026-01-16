@@ -99,63 +99,8 @@ export default function ResultsPage({
   const selection = selectTools(input);
   const torqueNm = toNewtonMeters(input.requiredTorque, input.torqueUnit);
 
-  // Structured data for SEO
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    name: "Torque Tool Selector",
-    applicationCategory: "IndustrialTool",
-    operatingSystem: "Web",
-    offers: {
-      "@type": "Offer",
-      price: "0",
-      priceCurrency: "USD"
-    },
-    featureList: [
-      "Torque tool selection",
-      "Industrial bolting recommendations",
-      "Multi-industry support",
-      "Tool comparison"
-    ]
-  };
-
-  const toolStructuredData = {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    name: "Recommended Torque Tools",
-    description: `Recommended torque tools for ${LABELS[input.industry]} ${LABELS[input.applicationType]} applications`,
-    numberOfItems: selection.recommendations.length,
-    itemListElement: selection.recommendations.map((rec, index) => ({
-      "@type": "ListItem",
-      position: index + 1,
-      item: {
-        "@type": "Product",
-        name: rec.tool.name,
-        description: rec.reasons.join(" "),
-        category: rec.tool.category.replace(/_/g, " "),
-        brand: {
-          "@type": "Brand",
-          name: rec.tool.category.includes("hydraulic") ? "TorsionX" : "RAD"
-        }
-      }
-    }))
-  };
-
   return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(structuredData)
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(toolStructuredData)
-        }}
-      />
-      <div className="space-y-8">
+    <div className="space-y-8">
       <header className="space-y-3">
         <nav aria-label="Breadcrumb">
           <div className="flex items-center justify-between">
@@ -235,10 +180,10 @@ export default function ResultsPage({
 
       <section aria-label="Tool comparison">
         <ToolComparisonTable
-        recommendations={selection.recommendations}
-        torqueUnit={input.torqueUnit}
-      />
+          recommendations={selection.recommendations}
+          torqueUnit={input.torqueUnit}
+        />
+      </section>
     </div>
-    </>
   );
 }

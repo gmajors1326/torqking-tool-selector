@@ -1,5 +1,6 @@
 import ToolSelectorForm from "../components/ToolSelectorForm";
 import ThemeToggle from "../components/ThemeToggle";
+import StructuredData from "../components/StructuredData";
 
 export default function HomePage() {
   // Structured data for the tool selector
@@ -73,18 +74,7 @@ export default function HomePage() {
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(structuredData)
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(faqStructuredData)
-        }}
-      />
+      <StructuredData data={[structuredData, faqStructuredData]} />
       <div className="space-y-8">
       <header className="space-y-3">
         <div className="flex items-center justify-between">
