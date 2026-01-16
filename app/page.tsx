@@ -92,10 +92,10 @@ export default function HomePage() {
           </div>
           <ThemeToggle />
         </div>
-        <h1 className="text-3xl font-semibold text-industrial-900 dark:text-industrial-100">
+        <h1 className="text-3xl font-semibold text-industrial-100 dark:text-industrial-100">
           Torque Tool Selection for Industrial Bolting
         </h1>
-        <p className="max-w-3xl text-base text-industrial-700 dark:text-industrial-300">
+        <p className="max-w-3xl text-base text-industrial-300 dark:text-industrial-300">
           Provide job scope and operational constraints. The selector returns the most
           conservative tooling options and the reasoning behind each recommendation.
         </p>

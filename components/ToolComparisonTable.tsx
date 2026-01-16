@@ -15,10 +15,10 @@ export default function ToolComparisonTable({
 
   return (
     <div className="card mt-8 overflow-x-auto p-6">
-      <h3 className="text-lg font-semibold text-industrial-900 dark:text-industrial-100">Side-by-Side Comparison</h3>
+      <h3 className="text-lg font-semibold text-industrial-100 dark:text-industrial-100">Side-by-Side Comparison</h3>
       <table className="mt-4 w-full border-collapse text-sm">
         <thead>
-          <tr className="border-b border-industrial-200 text-left text-industrial-700 dark:border-industrial-700 dark:text-industrial-300">
+          <tr className="border-b border-industrial-700 text-left text-industrial-300 dark:border-industrial-700 dark:text-industrial-300">
             <th className="py-2 pr-4 font-semibold">Tool</th>
             <th className="py-2 pr-4 font-semibold">Torque Range</th>
             <th className="py-2 pr-4 font-semibold">Power Source</th>
@@ -33,17 +33,17 @@ export default function ToolComparisonTable({
             const maxTorque = fromNewtonMeters(tool.torqueRange.max, torqueUnit);
             const torqueDisplay = `${Math.round(minTorque)}–${Math.round(maxTorque)} ${torqueUnit}`;
             return (
-            <tr key={tool.id} className="border-b border-industrial-100 dark:border-industrial-700">
-              <td className="py-3 pr-4 font-semibold text-industrial-900 dark:text-industrial-100">{tool.name}</td>
-              <td className="py-3 pr-4 text-industrial-700 dark:text-industrial-300">
+            <tr key={tool.id} className="border-b border-industrial-700 dark:border-industrial-700">
+              <td className="py-3 pr-4 font-semibold text-industrial-100 dark:text-industrial-100">{tool.name}</td>
+              <td className="py-3 pr-4 text-industrial-300 dark:text-industrial-300">
                 {torqueDisplay}
               </td>
-              <td className="py-3 pr-4 text-industrial-700 dark:text-industrial-300">{tool.powerSource}</td>
-              <td className="py-3 pr-4 text-industrial-700 dark:text-industrial-300">
+              <td className="py-3 pr-4 text-industrial-300 dark:text-industrial-300">{tool.powerSource}</td>
+              <td className="py-3 pr-4 text-industrial-300 dark:text-industrial-300">
                 {tool.typicalApplications[0]?.replace(/_/g, " ") || "General bolting"}
               </td>
-              <td className="py-3 pr-4 text-industrial-700 dark:text-industrial-300">{tool.accuracyPriorityFit}</td>
-              <td className="py-3 pr-4 text-industrial-700 dark:text-industrial-300">{tool.rentalFit}</td>
+              <td className="py-3 pr-4 text-industrial-300 dark:text-industrial-300">{tool.accuracyPriorityFit}</td>
+              <td className="py-3 pr-4 text-industrial-300 dark:text-industrial-300">{tool.rentalFit}</td>
             </tr>
             );
           })}

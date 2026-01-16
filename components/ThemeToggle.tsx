@@ -39,7 +39,7 @@ export default function ThemeToggle() {
   return (
     <button
       onClick={toggleTheme}
-      className="inline-flex items-center gap-2 rounded-lg border border-industrial-200 bg-white px-3 py-2 text-sm font-semibold text-industrial-900 transition hover:bg-industrial-100 dark:border-industrial-700 dark:bg-industrial-800 dark:text-industrial-100 dark:hover:bg-industrial-700"
+      className="inline-flex items-center gap-2 rounded-lg border border-industrial-700 bg-industrial-800 px-3 py-2 text-sm font-semibold text-industrial-100 transition hover:bg-industrial-700 dark:border-industrial-700 dark:bg-industrial-800 dark:text-industrial-100 dark:hover:bg-industrial-700"
       aria-label="Toggle dark mode"
     >
       {isDark ? (

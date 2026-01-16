@@ -7,7 +7,7 @@
 }
 
 body {
-  @apply bg-industrial-100 text-industrial-900 dark:bg-[#000000] dark:text-industrial-100;
+  @apply bg-[#000000] text-industrial-100 dark:bg-[#000000] dark:text-industrial-100;
 }
 
 main {
@@ -15,27 +15,27 @@ main {
 }
 
 .card {
-  @apply rounded-2xl bg-white shadow-sm ring-1 ring-industrial-200 dark:bg-industrial-800 dark:ring-industrial-700;
+  @apply rounded-2xl bg-industrial-800 shadow-sm ring-1 ring-industrial-700 dark:bg-industrial-800 dark:ring-industrial-700;
 }
 
 .section-title {
-  @apply text-xl font-semibold text-industrial-900 dark:text-industrial-100;
+  @apply text-xl font-semibold text-industrial-100 dark:text-industrial-100;
 }
 
 .muted {
-  @apply text-sm text-industrial-700 dark:text-industrial-300;
+  @apply text-sm text-industrial-300 dark:text-industrial-300;
 }
 
 .label {
-  @apply text-sm font-semibold text-industrial-900 dark:text-industrial-100;
+  @apply text-sm font-semibold text-industrial-100 dark:text-industrial-100;
 }
 
 .input {
-  @apply mt-2 w-full rounded-lg border border-industrial-200 bg-white px-3 py-2 text-sm focus:border-accent-600 focus:outline-none focus:ring-2 focus:ring-accent-600/20 dark:border-industrial-700 dark:bg-industrial-800 dark:text-industrial-100 dark:focus:border-accent-600;
+  @apply mt-2 w-full rounded-lg border border-industrial-700 bg-industrial-800 px-3 py-2 text-sm text-industrial-100 focus:border-accent-600 focus:outline-none focus:ring-2 focus:ring-accent-600/20 dark:border-industrial-700 dark:bg-industrial-800 dark:text-industrial-100 dark:focus:border-accent-600;
 }
 
 .select {
-  @apply mt-2 w-full rounded-lg border border-industrial-200 bg-white px-3 py-2 text-sm focus:border-accent-600 focus:outline-none focus:ring-2 focus:ring-accent-600/20 dark:border-industrial-700 dark:bg-industrial-800 dark:text-industrial-100 dark:focus:border-accent-600;
+  @apply mt-2 w-full rounded-lg border border-industrial-700 bg-industrial-800 px-3 py-2 text-sm text-industrial-100 focus:border-accent-600 focus:outline-none focus:ring-2 focus:ring-accent-600/20 dark:border-industrial-700 dark:bg-industrial-800 dark:text-industrial-100 dark:focus:border-accent-600;
 }
 
 .button-primary {
@@ -43,7 +43,7 @@ main {
 }
 
 .button-secondary {
-  @apply inline-flex items-center justify-center rounded-lg border border-industrial-200 px-4 py-2 text-sm font-semibold text-industrial-900 hover:bg-industrial-100 dark:border-industrial-700 dark:text-industrial-100 dark:hover:bg-industrial-700;
+  @apply inline-flex items-center justify-center rounded-lg border border-industrial-700 px-4 py-2 text-sm font-semibold text-industrial-100 hover:bg-industrial-700 dark:border-industrial-700 dark:text-industrial-100 dark:hover:bg-industrial-700;
 }
 
 .badge {

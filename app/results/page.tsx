@@ -77,7 +77,7 @@ export default function ResultsPage({
   if (!input || errors.length > 0) {
     return (
       <div className="space-y-6">
-        <h1 className="text-2xl font-semibold text-industrial-900 dark:text-industrial-100">Selection Details Needed</h1>
+        <h1 className="text-2xl font-semibold text-industrial-100 dark:text-industrial-100">Selection Details Needed</h1>
         <p className="muted">
           The selection engine requires the required torque, unit, and fastener size to proceed.
         </p>
@@ -121,46 +121,46 @@ export default function ResultsPage({
             <ThemeToggle />
           </div>
         </nav>
-        <p className="text-sm font-semibold uppercase tracking-widest text-industrial-700 dark:text-industrial-300">
+        <p className="text-sm font-semibold uppercase tracking-widest text-industrial-300 dark:text-industrial-300">
           Recommended Tooling
         </p>
-        <h1 className="text-3xl font-semibold text-industrial-900 dark:text-industrial-100">
+        <h1 className="text-3xl font-semibold text-industrial-100 dark:text-industrial-100">
           Built for safe, accurate bolting
         </h1>
-        <p className="max-w-3xl text-base text-industrial-700 dark:text-industrial-300">
+        <p className="max-w-3xl text-base text-industrial-300 dark:text-industrial-300">
           Results are conservative and based on the inputs below. Confirm final tooling with site
           procedures and OEM guidance.
         </p>
       </header>
       <section aria-label="Selection parameters">
 
-      <div className="card grid gap-4 p-6 text-sm text-industrial-700 dark:text-industrial-300 md:grid-cols-3">
+      <div className="card grid gap-4 p-6 text-sm text-industrial-300 dark:text-industrial-300 md:grid-cols-3">
         <div>
-          <p className="font-semibold text-industrial-900 dark:text-industrial-100">Torque Requirement</p>
+          <p className="font-semibold text-industrial-100 dark:text-industrial-100">Torque Requirement</p>
           <p>
             {input.requiredTorque} {input.torqueUnit} ({torqueNm.toFixed(0)} Nm)
           </p>
         </div>
         <div>
-          <p className="font-semibold text-industrial-900 dark:text-industrial-100">Fastener Size</p>
+          <p className="font-semibold text-industrial-100 dark:text-industrial-100">Fastener Size</p>
           <p>{fastenerLabel ?? `${input.fastenerSizeMm.toFixed(1)} mm`}</p>
         </div>
         <div>
-          <p className="font-semibold text-industrial-900 dark:text-industrial-100">Industry / Application</p>
+          <p className="font-semibold text-industrial-100 dark:text-industrial-100">Industry / Application</p>
           <p>
             {LABELS[input.industry]} · {LABELS[input.applicationType]}
           </p>
         </div>
         <div>
-          <p className="font-semibold text-industrial-900 dark:text-industrial-100">Environment</p>
+          <p className="font-semibold text-industrial-100 dark:text-industrial-100">Environment</p>
           <p>{LABELS[input.environment]}</p>
         </div>
         <div>
-          <p className="font-semibold text-industrial-900 dark:text-industrial-100">Accuracy Priority</p>
+          <p className="font-semibold text-industrial-100 dark:text-industrial-100">Accuracy Priority</p>
           <p>{LABELS[input.accuracyPriority]}</p>
         </div>
         <div>
-          <p className="font-semibold text-industrial-900 dark:text-industrial-100">Power Preference</p>
+          <p className="font-semibold text-industrial-100 dark:text-industrial-100">Power Preference</p>
           <p>{LABELS[input.powerPreference] || "No Preference"}</p>
         </div>
       </div>
