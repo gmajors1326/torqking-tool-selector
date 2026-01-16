@@ -66,9 +66,14 @@ export default function ToolResultsCard({
       </div>
 
       <div className="mt-5 flex flex-wrap gap-3">
-        <button className="button-primary" type="button">
+        <a 
+          href="https://www.thetorqking.com/torque-tool-rental-request" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="button-primary"
+        >
           Request Rental
-        </button>
+        </a>
         <button className="button-secondary" type="button">
           Talk to a Specialist
         </button>
