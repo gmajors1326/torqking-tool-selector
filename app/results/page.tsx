@@ -145,11 +145,15 @@ export default function ResultsPage({
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(structuredData)
+        }}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(toolStructuredData) }}
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(toolStructuredData)
+        }}
       />
       <div className="space-y-8">
       <header className="space-y-3">
