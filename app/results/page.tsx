@@ -114,7 +114,7 @@ export default function ResultsPage({
           Recommended Tooling
         </p>
         <h1 className="text-3xl font-semibold text-industrial-900 dark:text-industrial-100">
-          Shortlist built for safe, accurate bolting
+          Built for safe, accurate bolting
         </h1>
         <p className="max-w-3xl text-base text-industrial-700 dark:text-industrial-300">
           Results are conservative and based on the inputs below. Confirm final tooling with site
