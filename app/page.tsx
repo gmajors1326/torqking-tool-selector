@@ -94,7 +94,7 @@ export default function HomePage() {
           Torque Tool Selection for Industrial Bolting
         </h1>
         <p className="max-w-3xl text-base text-industrial-700 dark:text-industrial-300">
-          Provide job inputs and operational constraints. The selector returns the most
+          Provide job scope and operational constraints. The selector returns the most
           conservative tooling options and the reasoning behind each recommendation.
         </p>
       </header>

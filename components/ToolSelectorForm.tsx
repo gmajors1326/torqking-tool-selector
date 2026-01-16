@@ -115,7 +115,7 @@ export default function ToolSelectorForm() {
   return (
     <section className="grid gap-6 lg:grid-cols-[1.1fr,0.9fr]">
       <div className="card p-6">
-        <h2 className="section-title">Job Inputs</h2>
+        <h2 className="section-title">Job Scope</h2>
         <p className="muted mt-2">
           Capture core torque and fastener details to anchor the selection.
         </p>
