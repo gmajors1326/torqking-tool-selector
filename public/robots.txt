@@ -1,0 +1,18 @@
+# robots.txt for TorqKing Torque Tool Selector
+# Note: Sitemap URL will be automatically updated based on deployment URL
+
+User-agent: *
+Allow: /
+Disallow: /results
+Disallow: /api/
+
+# Allow indexing of main selector page
+Allow: /
+
+# Sitemap location (update with your actual deployment URL)
+# Example: Sitemap: https://tool-selector.torqking.com/sitemap.xml
+# Or: Sitemap: https://torqking.com/tool-selector/sitemap.xml
+Sitemap: https://torqking.com/sitemap.xml
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1
