@@ -104,9 +104,20 @@ export default function ResultsPage({
       <header className="space-y-3">
         <nav aria-label="Breadcrumb">
           <div className="flex items-center justify-between">
-            <a className="button-secondary" href="/" aria-label="Return to tool selector">
-              Back to Selector
-            </a>
+            <div className="flex items-center gap-4">
+              <a href="https://www.thetorqking.com" target="_blank" rel="noopener noreferrer" className="h-16 flex items-center" aria-label="Visit TorqKing.com">
+                <img
+                  src="/torqking-logo.png.png"
+                  alt="TorqKing - Industrial Torque Tool Selector and Bolting Solutions"
+                  className="h-full w-auto object-contain"
+                  width={160}
+                  height={64}
+                />
+              </a>
+              <a className="button-secondary" href="/" aria-label="Return to tool selector">
+                Back to Selector
+              </a>
+            </div>
             <ThemeToggle />
           </div>
         </nav>
