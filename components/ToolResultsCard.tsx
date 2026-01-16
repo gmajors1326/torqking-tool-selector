@@ -74,9 +74,14 @@ export default function ToolResultsCard({
         >
           Request Rental
         </a>
-        <button className="button-secondary" type="button">
+        <a 
+          href="https://www.thetorqking.com/contact" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="button-secondary"
+        >
           Talk to a Specialist
-        </button>
+        </a>
       </div>
     </div>
   );
