@@ -10,58 +10,67 @@ When you see the error "URL not in property" in Google Search Console, it means 
 
 1. Go to [Google Search Console](https://search.google.com/search-console)
 2. Click **"Add Property"** (or use the property dropdown)
-3. Select **"URL prefix"** (not "Domain")
+3. You'll see two options:
+   - **"Domain"** - ❌ Don't select this
+   - **"URL prefix"** - ✅ Select this one
 4. Enter: `https://torqking-tool-selector.vercel.app`
 5. Click **"Continue"**
 
 ### 2. Verify Ownership
 
-**⚠️ IMPORTANT: Use HTML Meta Tag method**
+After clicking "Continue", Google will ask you to verify ownership. You'll see several verification method options:
 
-- ❌ **DNS Verification** - Won't work for `vercel.app` subdomains (Vercel controls DNS)
-- ❌ **HTML File** - Often fails with Next.js/Vercel deployments
-- ✅ **HTML Meta Tag** - Best option for Vercel deployments
+**⚠️ IMPORTANT: Select "HTML tag" method**
 
-#### How to Switch Verification Methods
-
-If you're currently on DNS or HTML file verification:
-
-1. In Google Search Console, click **"Alternate methods"** or look for **"HTML tag"** option
-2. Select **"HTML tag"** method
-3. Google will show you a meta tag like:
-   ```html
-   <meta name="google-site-verification" content="abc123xyz789..." />
-   ```
-4. Copy ONLY the content value (the part after `content="` and before `"`)
-   - Example: If the tag is `<meta name="google-site-verification" content="abc123xyz789" />`
-   - Copy: `abc123xyz789` (just the code, not the full tag)
+- ❌ **"Domain name provider" (DNS)** - Won't work for `vercel.app` subdomains
+- ❌ **"HTML file"** - Often fails with Next.js/Vercel deployments  
+- ✅ **"HTML tag"** - Best option for Vercel deployments (select this one!)
 
 #### Step-by-Step: HTML Meta Tag Verification
 
-1. **Get Verification Code from Google Search Console**:
-   - Select **"HTML tag"** verification method
-   - Copy the verification code (the `content` value from the meta tag)
+**Step 1: Select HTML Tag Method**
+- After entering your URL and clicking "Continue", you'll see verification options
+- Look for **"HTML tag"** option and select it
+- Google will show you a meta tag like:
+  ```html
+  <meta name="google-site-verification" content="abc123xyz789..." />
+  ```
 
-2. **Add to Vercel Environment Variables**:
-   - Go to [Vercel Dashboard](https://vercel.com/dashboard)
-   - Select your project: **torqking-tool-selector**
-   - Go to **Settings → Environment Variables**
-   - Click **"Add New"**
-   - **Key**: `NEXT_PUBLIC_GOOGLE_VERIFICATION`
-   - **Value**: Paste the verification code (just the code, not the full meta tag)
-   - **Environment**: Select **Production** (and optionally Preview/Development)
-   - Click **"Save"**
+**Step 2: Copy the Verification Code**
+- Copy ONLY the content value (the code between the quotes)
+- Example: If the tag shows `content="abc123xyz789"`, copy: `abc123xyz789`
+- Don't copy the entire meta tag, just the code inside the quotes
 
-3. **Redeploy**:
-   - Go to **Deployments** tab
-   - Click the **"..."** menu on the latest deployment
-   - Click **"Redeploy"** (or wait for automatic deployment on next push)
+**Step 3: Add to Vercel Environment Variables**
+- Go to [Vercel Dashboard](https://vercel.com/dashboard)
+- Select your project: **torqking-tool-selector**
+- Go to **Settings → Environment Variables**
+- Click **"Add New"**
+- **Key**: `NEXT_PUBLIC_GOOGLE_VERIFICATION`
+- **Value**: Paste the verification code (just the code, not the full meta tag)
+- **Environment**: Select **Production** (and optionally Preview/Development)
+- Click **"Save"**
 
-4. **Verify in Google Search Console**:
-   - Wait 2-3 minutes after deployment completes
-   - Go back to Google Search Console
-   - Click **"Verify"** button
-   - ✅ Should show "Ownership verified"
+**Step 4: Redeploy**
+- Go to **Deployments** tab
+- Click the **"..."** menu on the latest deployment
+- Click **"Redeploy"** (or wait for automatic deployment on next push)
+- Wait for deployment to complete (usually 1-2 minutes)
+
+**Step 5: Verify in Google Search Console**
+- Wait 2-3 minutes after deployment completes
+- Go back to Google Search Console (you should still be on the verification page)
+- Click **"Verify"** button
+- ✅ Should show "Ownership verified"
+
+## If You Already Selected DNS Verification
+
+If you already selected "Domain name provider" (DNS) and it failed:
+
+1. On the verification page, look for a link that says **"Alternate methods"** or **"Try a different method"**
+2. Click it to see other verification options
+3. Select **"HTML tag"** from the list
+4. Follow Steps 2-5 above
 
 ## Why DNS Verification Doesn't Work for Vercel Subdomains
 
