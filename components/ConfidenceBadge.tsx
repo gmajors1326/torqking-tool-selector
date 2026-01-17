@@ -1,11 +1,35 @@
 import { ConfidenceLevel } from "../types/tools";
 
-const confidenceStyles: Record<ConfidenceLevel, string> = {
-  High: "bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-200",
-  Medium: "bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-200",
-  Conditional: "bg-rose-100 text-rose-800 dark:bg-rose-900 dark:text-rose-200"
+const confidenceStyles: Record<ConfidenceLevel, { bg: string; text: string; shadow: string }> = {
+  High: {
+    bg: "#2D2D2D",
+    text: "#4ADE80",
+    shadow: "4px 4px 8px rgba(0, 0, 0, 0.4), -4px -4px 8px rgba(255, 255, 255, 0.05)"
+  },
+  Medium: {
+    bg: "#2D2D2D",
+    text: "#FBBF24",
+    shadow: "4px 4px 8px rgba(0, 0, 0, 0.4), -4px -4px 8px rgba(255, 255, 255, 0.05)"
+  },
+  Conditional: {
+    bg: "#2D2D2D",
+    text: "#E43A5F",
+    shadow: "4px 4px 8px rgba(0, 0, 0, 0.4), -4px -4px 8px rgba(255, 255, 255, 0.05)"
+  }
 };
 
 export default function ConfidenceBadge({ level }: { level: ConfidenceLevel }) {
-  return <span className={`badge ${confidenceStyles[level]}`}>{level} Confidence</span>;
+  const style = confidenceStyles[level];
+  return (
+    <span 
+      className="badge px-4 py-2 rounded-neumorphic font-semibold"
+      style={{ 
+        background: style.bg, 
+        color: style.text,
+        boxShadow: style.shadow
+      }}
+    >
+      {level} Confidence
+    </span>
+  );
 }

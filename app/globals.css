@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -7,50 +9,130 @@
 }
 
 body {
-  @apply bg-[#000000] text-industrial-100 dark:bg-[#000000] dark:text-industrial-100;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  @apply bg-dark-bg text-text-primary;
+  font-family: 'Montserrat', 'Poppins', system-ui, sans-serif;
+  min-height: 100vh;
 }
 
 * {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Montserrat', 'Poppins', system-ui, sans-serif;
 }
 
 main {
   @apply mx-auto max-w-6xl px-6 py-10;
 }
 
+/* Neumorphic Card - Raised Effect */
 .card {
-  @apply rounded-2xl bg-industrial-800 shadow-sm ring-1 ring-industrial-700 dark:bg-industrial-800 dark:ring-industrial-700;
+  @apply rounded-neumorphic-lg bg-dark-card shadow-neumorphic-raised;
+  background: #282828;
 }
 
+/* Neumorphic Pressed Effect */
+.neumorphic-pressed {
+  @apply rounded-neumorphic bg-dark-pressed shadow-neumorphic-pressed;
+}
+
+/* Section Title */
 .section-title {
-  @apply text-xl font-semibold text-industrial-100 dark:text-industrial-100;
+  @apply text-xl font-semibold text-text-primary;
 }
 
 .muted {
-  @apply text-sm text-industrial-300 dark:text-industrial-300;
+  @apply text-sm text-text-secondary;
 }
 
 .label {
-  @apply text-sm font-semibold text-industrial-100 dark:text-industrial-100;
+  @apply text-sm font-semibold text-text-primary;
 }
 
+/* Neumorphic Input */
 .input {
-  @apply mt-2 w-full rounded-lg border border-industrial-700 bg-industrial-800 px-3 py-2 text-sm text-industrial-100 focus:border-accent-600 focus:outline-none focus:ring-2 focus:ring-accent-600/20 dark:border-industrial-700 dark:bg-industrial-800 dark:text-industrial-100 dark:focus:border-accent-600;
+  @apply mt-2 w-full rounded-neumorphic bg-dark-card px-4 py-3 text-sm text-text-primary;
+  box-shadow: inset 4px 4px 8px rgba(0, 0, 0, 0.5), inset -4px -4px 8px rgba(255, 255, 255, 0.05);
+  border: none;
+  transition: all 0.2s ease;
 }
 
+.input:focus {
+  @apply outline-none;
+  box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.6), inset -2px -2px 4px rgba(255, 255, 255, 0.08);
+  background: #2D2D2D;
+}
+
+/* Neumorphic Select */
 .select {
-  @apply mt-2 w-full rounded-lg border border-industrial-700 bg-industrial-800 px-3 py-2 text-sm text-industrial-100 focus:border-accent-600 focus:outline-none focus:ring-2 focus:ring-accent-600/20 dark:border-industrial-700 dark:bg-industrial-800 dark:text-industrial-100 dark:focus:border-accent-600;
+  @apply mt-2 w-full rounded-neumorphic px-4 py-3 text-sm text-text-primary;
+  background-color: #282828;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23AAAAAA' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  box-shadow: inset 4px 4px 8px rgba(0, 0, 0, 0.5), inset -4px -4px 8px rgba(255, 255, 255, 0.05);
+  border: none;
+  transition: all 0.2s ease;
+  appearance: none;
+  padding-right: 36px;
 }
 
+.select:focus {
+  @apply outline-none;
+  box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.6), inset -2px -2px 4px rgba(255, 255, 255, 0.08);
+  background-color: #2D2D2D;
+}
+
+/* Neumorphic Primary Button with Red Accent */
 .button-primary {
-  @apply inline-flex items-center justify-center rounded-lg bg-accent-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-accent-600/90;
+  @apply inline-flex items-center justify-center rounded-neumorphic px-6 py-3 text-sm font-semibold text-white transition-all duration-200;
+  background: #ff2800;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4), -4px -4px 8px rgba(255, 255, 255, 0.05);
 }
 
+.button-primary:hover {
+  background: #a52a2a;
+  box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.5), -6px -6px 12px rgba(255, 255, 255, 0.08);
+  transform: translateY(-1px);
+}
+
+.button-primary:active {
+  box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.5), inset -2px -2px 4px rgba(255, 255, 255, 0.05);
+  transform: translateY(0);
+}
+
+/* Neumorphic Secondary Button - Red with Maroon Rollover */
 .button-secondary {
-  @apply inline-flex items-center justify-center rounded-lg border border-industrial-700 px-4 py-2 text-sm font-semibold text-industrial-100 hover:bg-industrial-700 dark:border-industrial-700 dark:text-industrial-100 dark:hover:bg-industrial-700;
+  @apply inline-flex items-center justify-center rounded-neumorphic px-6 py-3 text-sm font-semibold text-white transition-all duration-200;
+  background: #ff2800;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4), -4px -4px 8px rgba(255, 255, 255, 0.05);
+}
+
+.button-secondary:hover {
+  background: #a52a2a;
+  box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.5), -6px -6px 12px rgba(255, 255, 255, 0.08);
+  transform: translateY(-1px);
+}
+
+.button-secondary:active {
+  box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.5), inset -2px -2px 4px rgba(255, 255, 255, 0.05);
+  transform: translateY(0);
 }
 
 .badge {
   @apply inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold;
+}
+
+/* Neumorphic Icon Button */
+.icon-button {
+  @apply rounded-full p-3 transition-all duration-200;
+  background: #282828;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4), -4px -4px 8px rgba(255, 255, 255, 0.05);
+}
+
+.icon-button:hover {
+  box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.5), -6px -6px 12px rgba(255, 255, 255, 0.08);
+  transform: translateY(-1px);
+}
+
+.icon-button:active {
+  box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.5), inset -2px -2px 4px rgba(255, 255, 255, 0.05);
+  transform: translateY(0);
 }

@@ -297,9 +297,9 @@ export default function ToolSelectorForm() {
       </div>
 
       {errors.length > 0 && (
-        <div className="card border border-amber-200 bg-amber-50 p-4 text-amber-900 lg:col-span-2">
-          <p className="font-semibold">Resolve the following before continuing:</p>
-          <ul className="mt-2 list-disc pl-5 text-sm">
+        <div className="card p-6 lg:col-span-2" style={{ background: '#2D2D2D', boxShadow: 'inset 4px 4px 8px rgba(0, 0, 0, 0.5), inset -4px -4px 8px rgba(255, 255, 255, 0.05)' }}>
+          <p className="font-semibold text-text-primary">Resolve the following before continuing:</p>
+          <ul className="mt-2 list-disc pl-5 text-sm text-text-secondary">
             {errors.map((error) => (
               <li key={error}>{error}</li>
             ))}

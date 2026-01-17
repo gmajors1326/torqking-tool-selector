@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import ToolComparisonTable from "../../components/ToolComparisonTable";
 import ToolResultsCard from "../../components/ToolResultsCard";
-import ThemeToggle from "../../components/ThemeToggle";
 import { selectTools } from "../../lib/selectorLogic";
 import { parseSelectionInput, toNewtonMeters } from "../../lib/validators";
 
@@ -77,13 +76,13 @@ export default function ResultsPage({
   if (!input || errors.length > 0) {
     return (
       <div className="space-y-6">
-        <h1 className="text-2xl font-semibold text-industrial-100 dark:text-industrial-100">Selection Details Needed</h1>
+        <h1 className="text-3xl font-bold text-text-primary">Selection Details Needed</h1>
         <p className="muted">
           The selection engine requires the required torque, unit, and fastener size to proceed.
         </p>
-        <div className="card border border-amber-200 bg-amber-50 p-4 text-amber-900 dark:border-amber-800 dark:bg-amber-900/20 dark:text-amber-200">
-          <p className="font-semibold">Missing inputs:</p>
-          <ul className="mt-2 list-disc pl-5 text-sm">
+        <div className="card p-6" style={{ background: '#2D2D2D', boxShadow: 'inset 4px 4px 8px rgba(0, 0, 0, 0.5), inset -4px -4px 8px rgba(255, 255, 255, 0.05)' }}>
+          <p className="font-semibold text-text-primary">Missing inputs:</p>
+          <ul className="mt-2 list-disc pl-5 text-sm text-text-secondary">
             {errors.map((error) => (
               <li key={error}>{error}</li>
             ))}
@@ -101,75 +100,72 @@ export default function ResultsPage({
 
   return (
     <div className="space-y-8">
-      <header className="space-y-3">
+      <header className="space-y-4">
         <nav aria-label="Breadcrumb">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <a href="https://www.thetorqking.com" target="_blank" rel="noopener noreferrer" className="h-16 flex items-center" aria-label="Visit TorqKing.com">
-                <img
-                  src="/torqking-logo.png.png"
-                  alt="TorqKing - Industrial Torque Tool Selector and Bolting Solutions"
-                  className="h-full w-auto object-contain"
-                  width={160}
-                  height={64}
-                />
-              </a>
-              <a className="button-secondary" href="/" aria-label="Return to tool selector">
-                Back to Selector
-              </a>
-            </div>
-            <ThemeToggle />
+          <div className="flex items-center gap-4">
+            <a href="https://www.thetorqking.com" target="_blank" rel="noopener noreferrer" className="h-16 flex items-center" aria-label="Visit TorqKing.com">
+              <img
+                src="/torqking-logo.png.png"
+                alt="TorqKing - Industrial Torque Tool Selector and Bolting Solutions"
+                className="h-full w-auto object-contain"
+                width={160}
+                height={64}
+              />
+            </a>
+            <a className="button-secondary" href="/" aria-label="Return to tool selector">
+              Back to Selector
+            </a>
           </div>
         </nav>
-        <p className="text-sm font-semibold uppercase tracking-widest text-industrial-300 dark:text-industrial-300">
+        <p className="text-sm font-semibold uppercase tracking-widest text-text-secondary">
           Recommended Tooling
         </p>
-        <h1 className="text-3xl font-semibold text-industrial-100 dark:text-industrial-100">
+        <h1 className="text-4xl font-bold text-text-primary">
           Built for safe, accurate bolting
         </h1>
-        <p className="max-w-3xl text-base text-industrial-300 dark:text-industrial-300">
+        <p className="max-w-3xl text-base text-text-secondary">
           Results are conservative and based on the inputs below. Confirm final tooling with site
           procedures and OEM guidance.
         </p>
       </header>
       <section aria-label="Selection parameters">
 
-      <div className="card grid gap-4 p-6 text-sm text-industrial-300 dark:text-industrial-300 md:grid-cols-3">
+      <div className="card grid gap-4 p-6 text-sm text-text-secondary md:grid-cols-3">
         <div>
-          <p className="font-semibold text-industrial-100 dark:text-industrial-100">Torque Requirement</p>
-          <p>
+          <p className="font-semibold text-text-primary">Torque Requirement</p>
+          <p className="mt-1">
             {input.requiredTorque} {input.torqueUnit} ({torqueNm.toFixed(0)} Nm)
           </p>
         </div>
         <div>
-          <p className="font-semibold text-industrial-100 dark:text-industrial-100">Fastener Size</p>
-          <p>{fastenerLabel ?? `${input.fastenerSizeMm.toFixed(1)} mm`}</p>
+          <p className="font-semibold text-text-primary">Fastener Size</p>
+          <p className="mt-1">{fastenerLabel ?? `${input.fastenerSizeMm.toFixed(1)} mm`}</p>
         </div>
         <div>
-          <p className="font-semibold text-industrial-100 dark:text-industrial-100">Industry / Application</p>
-          <p>
+          <p className="font-semibold text-text-primary">Industry / Application</p>
+          <p className="mt-1">
             {LABELS[input.industry]} · {LABELS[input.applicationType]}
           </p>
         </div>
         <div>
-          <p className="font-semibold text-industrial-100 dark:text-industrial-100">Environment</p>
-          <p>{LABELS[input.environment]}</p>
+          <p className="font-semibold text-text-primary">Environment</p>
+          <p className="mt-1">{LABELS[input.environment]}</p>
         </div>
         <div>
-          <p className="font-semibold text-industrial-100 dark:text-industrial-100">Accuracy Priority</p>
-          <p>{LABELS[input.accuracyPriority]}</p>
+          <p className="font-semibold text-text-primary">Accuracy Priority</p>
+          <p className="mt-1">{LABELS[input.accuracyPriority]}</p>
         </div>
         <div>
-          <p className="font-semibold text-industrial-100 dark:text-industrial-100">Power Preference</p>
-          <p>{LABELS[input.powerPreference] || "No Preference"}</p>
+          <p className="font-semibold text-text-primary">Power Preference</p>
+          <p className="mt-1">{LABELS[input.powerPreference] || "No Preference"}</p>
         </div>
       </div>
       </section>
 
       {selection.notes.length > 0 && (
-        <div className="card border border-slate-200 bg-slate-50 p-4 text-slate-800 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200">
-          <p className="font-semibold">Field Notes</p>
-          <ul className="mt-2 list-disc pl-5 text-sm">
+        <div className="card p-6" style={{ background: '#2D2D2D', boxShadow: 'inset 4px 4px 8px rgba(0, 0, 0, 0.5), inset -4px -4px 8px rgba(255, 255, 255, 0.05)' }}>
+          <p className="font-semibold text-text-primary">Field Notes</p>
+          <ul className="mt-2 list-disc pl-5 text-sm text-text-secondary">
             {selection.notes.map((note) => (
               <li key={note}>{note}</li>
             ))}
@@ -196,11 +192,11 @@ export default function ResultsPage({
         />
       </section>
 
-      <div className="mt-8 rounded-lg border border-industrial-200 bg-industrial-50 p-6 dark:border-industrial-700 dark:bg-industrial-900">
-        <p className="text-center text-base font-medium text-industrial-900 dark:text-industrial-100">
+      <div className="card mt-8 p-8">
+        <p className="text-center text-lg font-semibold text-text-primary">
           Get the exact torque tool for your application — matched by real-world load, not guesswork.
         </p>
-        <p className="mt-2 text-center text-sm text-industrial-700 dark:text-industrial-300">
+        <p className="mt-2 text-center text-sm text-text-secondary">
           Rentals, sales, and calibrated tools — spec'd by a torque specialist.
         </p>
         <div className="mt-6 flex justify-center">

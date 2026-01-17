@@ -15,16 +15,16 @@ export default function ToolComparisonTable({
 
   return (
     <div className="card mt-8 overflow-x-auto p-6">
-      <h3 className="text-lg font-semibold text-industrial-100 dark:text-industrial-100">Side-by-Side Comparison</h3>
-      <table className="mt-4 w-full border-collapse text-sm">
+      <h3 className="text-xl font-bold text-text-primary">Side-by-Side Comparison</h3>
+      <table className="mt-6 w-full border-collapse text-sm">
         <thead>
-          <tr className="border-b border-industrial-700 text-left text-industrial-300 dark:border-industrial-700 dark:text-industrial-300">
-            <th className="py-2 pr-4 font-semibold">Tool</th>
-            <th className="py-2 pr-4 font-semibold">Torque Range</th>
-            <th className="py-2 pr-4 font-semibold">Power Source</th>
-            <th className="py-2 pr-4 font-semibold">Best For</th>
-            <th className="py-2 pr-4 font-semibold">Accuracy Fit</th>
-            <th className="py-2 pr-4 font-semibold">Rental Fit</th>
+          <tr className="border-b border-dark-pressed text-left">
+            <th className="py-3 pr-4 font-semibold text-text-primary">Tool</th>
+            <th className="py-3 pr-4 font-semibold text-text-primary">Torque Range</th>
+            <th className="py-3 pr-4 font-semibold text-text-primary">Power Source</th>
+            <th className="py-3 pr-4 font-semibold text-text-primary">Best For</th>
+            <th className="py-3 pr-4 font-semibold text-text-primary">Accuracy Fit</th>
+            <th className="py-3 pr-4 font-semibold text-text-primary">Rental Fit</th>
           </tr>
         </thead>
         <tbody>
@@ -33,17 +33,17 @@ export default function ToolComparisonTable({
             const maxTorque = fromNewtonMeters(tool.torqueRange.max, torqueUnit);
             const torqueDisplay = `${Math.round(minTorque)}–${Math.round(maxTorque)} ${torqueUnit}`;
             return (
-            <tr key={tool.id} className="border-b border-industrial-700 dark:border-industrial-700">
-              <td className="py-3 pr-4 font-semibold text-industrial-100 dark:text-industrial-100">{tool.name}</td>
-              <td className="py-3 pr-4 text-industrial-300 dark:text-industrial-300">
+            <tr key={tool.id} className="border-b border-dark-pressed">
+              <td className="py-4 pr-4 font-semibold text-text-primary">{tool.name}</td>
+              <td className="py-4 pr-4 text-text-secondary">
                 {torqueDisplay}
               </td>
-              <td className="py-3 pr-4 text-industrial-300 dark:text-industrial-300">{tool.powerSource}</td>
-              <td className="py-3 pr-4 text-industrial-300 dark:text-industrial-300">
+              <td className="py-4 pr-4 text-text-secondary">{tool.powerSource}</td>
+              <td className="py-4 pr-4 text-text-secondary">
                 {tool.typicalApplications[0]?.replace(/_/g, " ") || "General bolting"}
               </td>
-              <td className="py-3 pr-4 text-industrial-300 dark:text-industrial-300">{tool.accuracyPriorityFit}</td>
-              <td className="py-3 pr-4 text-industrial-300 dark:text-industrial-300">{tool.rentalFit}</td>
+              <td className="py-4 pr-4 text-text-secondary">{tool.accuracyPriorityFit}</td>
+              <td className="py-4 pr-4 text-text-secondary">{tool.rentalFit}</td>
             </tr>
             );
           })}

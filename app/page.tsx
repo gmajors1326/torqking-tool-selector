@@ -1,5 +1,4 @@
 import ToolSelectorForm from "../components/ToolSelectorForm";
-import ThemeToggle from "../components/ThemeToggle";
 import StructuredData from "../components/StructuredData";
 
 export default function HomePage() {
@@ -76,8 +75,8 @@ export default function HomePage() {
     <>
       <StructuredData data={[structuredData, faqStructuredData]} />
       <div className="space-y-8">
-      <header className="space-y-3">
-        <div className="flex items-center justify-between">
+      <header className="space-y-4">
+        <div className="flex items-center">
           <div className="h-20 flex items-center">
             <a href="https://www.thetorqking.com" target="_blank" rel="noopener noreferrer" aria-label="Visit TorqKing.com">
               <img
@@ -90,12 +89,11 @@ export default function HomePage() {
               />
             </a>
           </div>
-          <ThemeToggle />
         </div>
-        <h1 className="text-3xl font-semibold text-industrial-100 dark:text-industrial-100">
+        <h1 className="text-4xl font-bold text-text-primary">
           Torque Tool Selection for Industrial Bolting
         </h1>
-        <p className="max-w-3xl text-base text-industrial-300 dark:text-industrial-300">
+        <p className="max-w-3xl text-base text-text-secondary">
           Provide job scope and operational constraints. The selector returns the most
           conservative tooling options and the reasoning behind each recommendation.
         </p>

@@ -29,43 +29,43 @@ export default function ToolResultsCard({
     <div className="card p-6">
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
-          <h3 className="text-lg font-semibold text-industrial-100 dark:text-industrial-100">{tool.name}</h3>
+          <h3 className="text-xl font-bold text-text-primary">{tool.name}</h3>
           <p className="muted mt-1">{CATEGORY_LABELS[tool.category]}</p>
         </div>
         <ConfidenceBadge level={confidence} />
       </div>
 
-      <div className="mt-4">
-        <p className="text-sm font-semibold text-industrial-100 dark:text-industrial-100">Why this was selected</p>
-        <ul className="mt-2 list-disc pl-5 text-sm text-industrial-300 dark:text-industrial-300">
+      <div className="mt-6">
+        <p className="text-sm font-semibold text-text-primary">Why this was selected</p>
+        <ul className="mt-2 list-disc pl-5 text-sm text-text-secondary">
           {reasons.map((reason) => (
             <li key={reason}>{reason}</li>
           ))}
         </ul>
       </div>
 
-      <div className="mt-4 grid gap-3 text-sm text-industrial-300 dark:text-industrial-300 md:grid-cols-2">
+      <div className="mt-6 grid gap-4 text-sm text-text-secondary md:grid-cols-2">
         <div>
-          <p className="font-semibold text-industrial-100 dark:text-industrial-100">Ideal Use Case</p>
-          <p>{tool.typicalApplications[0]?.replace(/_/g, " ") || "General bolting"}</p>
+          <p className="font-semibold text-text-primary">Ideal Use Case</p>
+          <p className="mt-1">{tool.typicalApplications[0]?.replace(/_/g, " ") || "General bolting"}</p>
         </div>
         <div>
-          <p className="font-semibold text-industrial-100 dark:text-industrial-100">Key Specs</p>
-          <p>
+          <p className="font-semibold text-text-primary">Key Specs</p>
+          <p className="mt-1">
             {torqueDisplay} · {tool.accuracy} · {tool.weightClass} duty
           </p>
         </div>
         <div>
-          <p className="font-semibold text-industrial-100 dark:text-industrial-100">Power Source</p>
-          <p>{tool.powerSource}</p>
+          <p className="font-semibold text-text-primary">Power Source</p>
+          <p className="mt-1">{tool.powerSource}</p>
         </div>
         <div>
-          <p className="font-semibold text-industrial-100 dark:text-industrial-100">Rental Fit</p>
-          <p>{tool.rentalFit}</p>
+          <p className="font-semibold text-text-primary">Rental Fit</p>
+          <p className="mt-1">{tool.rentalFit}</p>
         </div>
       </div>
 
-      <div className="mt-5 flex flex-wrap gap-3">
+      <div className="mt-6 flex flex-wrap gap-3">
         <a 
           href="https://www.thetorqking.com/torque-tool-rental-request" 
           target="_blank" 

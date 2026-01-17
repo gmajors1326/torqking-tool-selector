@@ -8,14 +8,14 @@ export default function GlobalError({
   reset: () => void;
 }) {
   return (
-    <html lang="en">
-      <body>
-        <div className="flex min-h-screen flex-col items-center justify-center space-y-4 p-6">
-          <h2 className="text-2xl font-semibold">Something went wrong!</h2>
-          <p>{error.message || "An unexpected error occurred"}</p>
+    <html lang="en" className="dark">
+      <body className="bg-dark-bg text-text-primary">
+        <div className="flex min-h-screen flex-col items-center justify-center space-y-6 p-6">
+          <h2 className="text-3xl font-bold text-text-primary">Something went wrong!</h2>
+          <p className="text-text-secondary">{error.message || "An unexpected error occurred"}</p>
           <button
             onClick={reset}
-            className="rounded-lg bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
+            className="button-primary"
           >
             Try again
           </button>
