@@ -16,19 +16,31 @@ When you see the error "URL not in property" in Google Search Console, it means 
 
 ### 2. Verify Ownership
 
-**⚠️ IMPORTANT: Use HTML Meta Tag method (NOT HTML file)**
+**⚠️ IMPORTANT: Use HTML Meta Tag method**
 
-The HTML file method often fails with Next.js/Vercel deployments. Use the meta tag method instead:
+- ❌ **DNS Verification** - Won't work for `vercel.app` subdomains (Vercel controls DNS)
+- ❌ **HTML File** - Often fails with Next.js/Vercel deployments
+- ✅ **HTML Meta Tag** - Best option for Vercel deployments
+
+#### How to Switch Verification Methods
+
+If you're currently on DNS or HTML file verification:
+
+1. In Google Search Console, click **"Alternate methods"** or look for **"HTML tag"** option
+2. Select **"HTML tag"** method
+3. Google will show you a meta tag like:
+   ```html
+   <meta name="google-site-verification" content="abc123xyz789..." />
+   ```
+4. Copy ONLY the content value (the part after `content="` and before `"`)
+   - Example: If the tag is `<meta name="google-site-verification" content="abc123xyz789" />`
+   - Copy: `abc123xyz789` (just the code, not the full tag)
 
 #### Step-by-Step: HTML Meta Tag Verification
 
-1. **In Google Search Console**, when prompted to verify:
-   - Click **"Alternate methods"** or **"HTML tag"** (not HTML file)
-   - Google will show you a meta tag like:
-     ```html
-     <meta name="google-site-verification" content="abc123xyz789..." />
-     ```
-   - Copy ONLY the content value (the part after `content="` and before `"`)
+1. **Get Verification Code from Google Search Console**:
+   - Select **"HTML tag"** verification method
+   - Copy the verification code (the `content` value from the meta tag)
 
 2. **Add to Vercel Environment Variables**:
    - Go to [Vercel Dashboard](https://vercel.com/dashboard)
@@ -51,17 +63,17 @@ The HTML file method often fails with Next.js/Vercel deployments. Use the meta t
    - Click **"Verify"** button
    - ✅ Should show "Ownership verified"
 
-#### Option B: HTML File Upload
+## Why DNS Verification Doesn't Work for Vercel Subdomains
 
-1. Download the HTML verification file from Google Search Console
-2. Upload it to the `public/` folder in your project
-3. Commit and push to GitHub
-4. Wait for Vercel to deploy
-5. Verify in Google Search Console
+When you use `torqking-tool-selector.vercel.app`, Vercel controls the DNS for the `vercel.app` domain. You cannot add DNS TXT records for Vercel subdomains - only Vercel can do that.
 
-#### Option C: DNS Verification
+**Solution**: Use the HTML meta tag method instead (see above).
 
-If you have a custom domain, you can verify via DNS TXT record.
+## If You Have a Custom Domain
+
+If you later connect a custom domain (e.g., `tool-selector.torqking.com`), you can:
+- Use DNS verification (you control your domain's DNS)
+- Continue using HTML meta tag (works for any domain)
 
 ### 3. Request Indexing
 
