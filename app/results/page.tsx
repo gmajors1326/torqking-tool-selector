@@ -62,6 +62,7 @@ const LABELS: Record<string, string> = {
   no_preference: "No Preference",
   battery: "Battery",
   electric: "Electric",
+  electronic: "Electronic",
   air: "Air",
   hydraulic: "Hydraulic"
 };

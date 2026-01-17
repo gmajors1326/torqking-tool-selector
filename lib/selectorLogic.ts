@@ -64,6 +64,40 @@ function fastenerIsLarge(sizeMm: number) {
   return sizeMm >= 36;
 }
 
+// Helper functions to identify tool series by name/id
+function isERadTool(tool: ToolData): boolean {
+  return tool.name.startsWith("E-RAD") || tool.id.startsWith("e-rad");
+}
+
+function isVRadTool(tool: ToolData): boolean {
+  return tool.name.startsWith("V-RAD") || tool.id.startsWith("v-rad");
+}
+
+// Check if tool matches power preference (handles special cases for electronic/electric)
+function matchesPowerPreference(tool: ToolData, powerPreference: ToolSelectorInput["powerPreference"]): boolean {
+  if (powerPreference === "no_preference") {
+    return true;
+  }
+  
+  if (powerPreference === "electronic") {
+    // Electronic preference matches E-RAD tools (which have powerSource: "electric")
+    return isERadTool(tool);
+  }
+  
+  if (powerPreference === "electric") {
+    // Electric preference matches V-RAD tools only (which have powerSource: "battery")
+    return isVRadTool(tool);
+  }
+  
+  // For other preferences (battery, air, hydraulic), match by powerSource
+  // But exclude V-RAD from battery matches since V-RAD should only match "electric"
+  if (powerPreference === "battery") {
+    return tool.powerSource === "battery" && !isVRadTool(tool);
+  }
+  
+  return tool.powerSource === powerPreference;
+}
+
 // Industry-to-tool preference matrix (canonical)
 type IndustryPreference = "preferred" | "allowed" | "discouraged";
 
@@ -573,12 +607,18 @@ function scoreTool(tool: ToolData, input: ToolSelectorInput, torqueNm: number): 
 
   // Explicit power preference is high priority - user has stated a requirement
   if (input.powerPreference !== "no_preference") {
-    if (tool.powerSource === input.powerPreference) {
+    if (matchesPowerPreference(tool, input.powerPreference)) {
       score += POWER_PREFERENCE_BONUS;
-      reasons.push(`Matches explicit ${normalizeText(input.powerPreference)} power preference.`);
+      const preferenceLabel = input.powerPreference === "electronic" ? "electronic (E-RAD)" : 
+                              input.powerPreference === "electric" ? "electric (V-RAD)" : 
+                              normalizeText(input.powerPreference);
+      reasons.push(`Matches explicit ${preferenceLabel} power preference.`);
     } else {
       score += POWER_PREFERENCE_MISMATCH_PENALTY;
-      reasons.push(`Does not match ${normalizeText(input.powerPreference)} power preference.`);
+      const preferenceLabel = input.powerPreference === "electronic" ? "electronic (E-RAD)" : 
+                              input.powerPreference === "electric" ? "electric (V-RAD)" : 
+                              normalizeText(input.powerPreference);
+      reasons.push(`Does not match ${preferenceLabel} power preference.`);
     }
   }
 
@@ -668,7 +708,7 @@ export function selectTools(input: ToolSelectorInput): SelectionResult {
   // User's explicit requirement takes absolute priority
   if (input.powerPreference !== "no_preference") {
     const powerPreferenceMatches = candidates.filter(
-      (tool) => tool.powerSource === input.powerPreference
+      (tool) => matchesPowerPreference(tool, input.powerPreference)
     );
     if (powerPreferenceMatches.length > 0) {
       // ONLY include tools matching the power preference - user requirement is absolute
@@ -707,8 +747,9 @@ export function selectTools(input: ToolSelectorInput): SelectionResult {
     }
   }
 
-  if (input.environment === "hazardous_area" && input.powerPreference !== "electric") {
-    candidates = candidates.filter((tool) => tool.powerSource !== "electric");
+  if (input.environment === "hazardous_area" && input.powerPreference !== "electric" && input.powerPreference !== "electronic") {
+    // Filter out E-RAD tools (electronic) in hazardous areas unless explicitly requested
+    candidates = candidates.filter((tool) => !isERadTool(tool));
     notes.push("Hazardous area selected: non-electric tools prioritized.");
   }
 
@@ -727,8 +768,8 @@ export function selectTools(input: ToolSelectorInput): SelectionResult {
   // When explicit power preference is set, prioritize matching tools
   if (input.powerPreference !== "no_preference") {
     scored.sort((a, b) => {
-      const aMatches = a.tool.powerSource === input.powerPreference;
-      const bMatches = b.tool.powerSource === input.powerPreference;
+      const aMatches = matchesPowerPreference(a.tool, input.powerPreference);
+      const bMatches = matchesPowerPreference(b.tool, input.powerPreference);
       if (aMatches && !bMatches) return -1;
       if (!aMatches && bMatches) return 1;
       return b.fitScore - a.fitScore;
@@ -744,8 +785,9 @@ export function selectTools(input: ToolSelectorInput): SelectionResult {
     notes.push("No tools match the torque range; review torque requirement or contact engineering.");
   }
 
-  if (input.environment === "hazardous_area" && input.powerPreference === "electric") {
-    notes.push("Electric preference noted; confirm hazardous area classification before deployment.");
+  if (input.environment === "hazardous_area" && (input.powerPreference === "electric" || input.powerPreference === "electronic")) {
+    const toolType = input.powerPreference === "electric" ? "V-RAD" : "E-RAD";
+    notes.push(`${toolType} preference noted; confirm hazardous area classification before deployment.`);
   }
 
   if (input.applicationType === "shutdown_turnaround") {

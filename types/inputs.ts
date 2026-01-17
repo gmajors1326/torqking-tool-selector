@@ -19,7 +19,7 @@ export type ApplicationType =
   | "plant_maintenance"
   | "heavy_equipment";
 
-export type PowerPreference = "battery" | "electric" | "air" | "hydraulic" | "no_preference";
+export type PowerPreference = "battery" | "electric" | "electronic" | "air" | "hydraulic" | "no_preference";
 
 export type EnvironmentType = "field" | "plant" | "confined_space" | "hazardous_area" | "remote";
 

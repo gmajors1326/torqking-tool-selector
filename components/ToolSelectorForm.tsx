@@ -39,6 +39,7 @@ const POWER_OPTIONS: Array<{ value: PowerPreference; label: string }> = [
   { value: "no_preference", label: "No Preference" },
   { value: "battery", label: "Battery" },
   { value: "electric", label: "Electric" },
+  { value: "electronic", label: "Electronic" },
   { value: "air", label: "Air" },
   { value: "hydraulic", label: "Hydraulic" }
 ];
