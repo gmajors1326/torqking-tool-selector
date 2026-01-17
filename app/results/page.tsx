@@ -112,9 +112,14 @@ export default function ResultsPage({
                 height={80}
               />
             </a>
-            <a className="button-secondary text-xs px-4 py-2 w-fit" href="/" aria-label="Return to tool selector">
-              ← Back to Selector
-            </a>
+            <div className="flex gap-2">
+              <a className="button-secondary text-xs px-4 py-2 w-fit" href="/" aria-label="Return to tool selector">
+                ← Back to Selector
+              </a>
+              <a className="button-secondary text-xs px-4 py-2 w-fit" href="https://www.thetorqking.com" target="_blank" rel="noopener noreferrer" aria-label="Visit TorqKing.com">
+                Home
+              </a>
+            </div>
           </div>
         </nav>
         <p className="text-sm font-semibold uppercase tracking-widest text-text-secondary">
