@@ -6,7 +6,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Neumorphic dark theme palette
+        // Neumorphic dark theme palette - nested for organization
         dark: {
           bg: "#1A1A1A",      // Main background
           card: "#282828",    // Raised card background
@@ -28,7 +28,13 @@ const config: Config = {
           300: "#AAAAAA",
           200: "#CCCCCC",
           100: "#FFFFFF"
-        }
+        },
+        // Flat color names for Tailwind classes (text-text-primary, bg-dark-bg, etc.)
+        'text-primary': '#FFFFFF',
+        'text-secondary': '#AAAAAA',
+        'dark-bg': '#1A1A1A',
+        'dark-card': '#282828',
+        'dark-pressed': '#1F1F1F',
       },
       fontFamily: {
         sans: ['Montserrat', 'Poppins', 'system-ui', 'sans-serif'],

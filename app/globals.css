@@ -9,7 +9,8 @@
 }
 
 body {
-  @apply bg-dark-bg text-text-primary;
+  background-color: #1A1A1A;
+  color: #FFFFFF;
   font-family: 'Montserrat', 'Poppins', system-ui, sans-serif;
   min-height: 100vh;
 }
@@ -24,31 +25,37 @@ main {
 
 /* Neumorphic Card - Raised Effect */
 .card {
-  @apply rounded-neumorphic-lg bg-dark-card shadow-neumorphic-raised;
+  @apply rounded-neumorphic-lg shadow-neumorphic-raised;
   background: #282828;
 }
 
 /* Neumorphic Pressed Effect */
 .neumorphic-pressed {
-  @apply rounded-neumorphic bg-dark-pressed shadow-neumorphic-pressed;
+  @apply rounded-neumorphic shadow-neumorphic-pressed;
+  background-color: #1F1F1F;
 }
 
 /* Section Title */
 .section-title {
-  @apply text-xl font-semibold text-text-primary;
+  @apply text-xl font-semibold;
+  color: #FFFFFF;
 }
 
 .muted {
-  @apply text-sm text-text-secondary;
+  @apply text-sm;
+  color: #AAAAAA;
 }
 
 .label {
-  @apply text-sm font-semibold text-text-primary;
+  @apply text-sm font-semibold;
+  color: #FFFFFF;
 }
 
 /* Neumorphic Input */
 .input {
-  @apply mt-2 w-full rounded-neumorphic bg-dark-card px-4 py-3 text-sm text-text-primary;
+  @apply mt-2 w-full rounded-neumorphic px-4 py-3 text-sm;
+  background-color: #282828;
+  color: #FFFFFF;
   box-shadow: inset 4px 4px 8px rgba(0, 0, 0, 0.5), inset -4px -4px 8px rgba(255, 255, 255, 0.05);
   border: none;
   transition: all 0.2s ease;
@@ -62,8 +69,9 @@ main {
 
 /* Neumorphic Select */
 .select {
-  @apply mt-2 w-full rounded-neumorphic px-4 py-3 text-sm text-text-primary;
+  @apply mt-2 w-full rounded-neumorphic px-4 py-3 text-sm;
   background-color: #282828;
+  color: #FFFFFF;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23AAAAAA' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 12px center;
