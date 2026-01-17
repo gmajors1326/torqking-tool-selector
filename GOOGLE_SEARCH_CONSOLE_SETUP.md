@@ -137,7 +137,42 @@ NEXT_PUBLIC_GOOGLE_VERIFICATION=your-verification-code-here (after you get it fr
 - Check that you've added the exact URL (including `https://`)
 - Try switching properties using the dropdown in Google Search Console
 
-**Verification failed?**
-- Make sure the meta tag is in the `<head>` section (it should be automatically added)
-- Check that the environment variable is set for the **Production** environment
-- Wait a few minutes after deployment before verifying
+**"Ownership verification failed" - "Your meta tag is not formatted correctly"?**
+
+This error usually means one of these issues:
+
+1. **Environment variable not set or incorrect:**
+   - Go to Vercel → Settings → Environment Variables
+   - Check that `NEXT_PUBLIC_GOOGLE_VERIFICATION` exists
+   - Make sure the **value** is ONLY the verification code (no quotes, no spaces, no `<meta>` tag)
+   - Example: If Google shows `content="abc123xyz789"`, your Vercel value should be: `abc123xyz789`
+   - ❌ Wrong: `<meta name="google-site-verification" content="abc123xyz789" />`
+   - ❌ Wrong: `"abc123xyz789"` (with quotes)
+   - ✅ Correct: `abc123xyz789` (just the code)
+
+2. **Environment variable not applied to Production:**
+   - In Vercel, when adding the variable, make sure **Production** is selected
+   - If you only selected Preview/Development, it won't work for production
+
+3. **Deployment hasn't happened yet:**
+   - After adding/changing environment variables, you MUST redeploy
+   - Go to Deployments → Click "..." → "Redeploy"
+   - Wait for deployment to complete (check the status)
+
+4. **Verify the meta tag is in the HTML:**
+   - After deployment, visit: `https://torqking-tool-selector.vercel.app/`
+   - Right-click → "View Page Source" (or Ctrl+U)
+   - Search for "google-site-verification"
+   - You should see: `<meta name="google-site-verification" content="your-code-here" />`
+   - If it's missing, the environment variable isn't set correctly
+
+5. **Wait before verifying:**
+   - After deployment completes, wait 2-3 minutes
+   - Google needs time to crawl the updated page
+   - Then try verifying again in Google Search Console
+
+**Still not working?**
+- Double-check you copied ONLY the code from Google (not the full meta tag)
+- Make sure there are no extra spaces before/after the code in Vercel
+- Try removing and re-adding the environment variable
+- Redeploy after making changes

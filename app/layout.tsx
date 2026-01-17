@@ -95,9 +95,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="canonical" href={baseUrl} />
-        {googleVerification && (
-          <meta name="google-site-verification" content={googleVerification} />
-        )}
       </head>
       <body suppressHydrationWarning>
         <main>{children}</main>
