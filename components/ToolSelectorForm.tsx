@@ -40,8 +40,7 @@ const POWER_OPTIONS: Array<{ value: PowerPreference; label: string }> = [
   { value: "battery", label: "Battery" },
   { value: "electric", label: "Electric" },
   { value: "electronic", label: "Electronic" },
-  { value: "air", label: "Air" },
-  { value: "hydraulic", label: "Hydraulic" }
+  { value: "air", label: "Air" }
 ];
 
 const ENVIRONMENT_OPTIONS: Array<{ value: EnvironmentType; label: string }> = [
@@ -74,7 +73,7 @@ export default function ToolSelectorForm() {
     fastenerSizeMm: FASTENER_OPTIONS[0]?.sizeMm ?? 19.05,
     industry: "oil_gas",
     applicationType: "flange",
-    powerPreference: "hydraulic",
+    powerPreference: "no_preference",
     environment: "field",
     accuracyPriority: "high",
     purchaseIntent: "rental"

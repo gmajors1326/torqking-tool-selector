@@ -7,7 +7,7 @@ export default function HomePage() {
     "@context": "https://schema.org",
     "@type": "WebApplication",
     name: "Torque Tool Selector",
-    description: "Select the right torque tool or hydraulic bolt tensioner for your industrial bolting application",
+    description: "Select the right torque tool for your industrial bolting application",
     applicationCategory: "IndustrialTool",
     operatingSystem: "Web",
     offers: {
@@ -65,7 +65,7 @@ export default function HomePage() {
         name: "What types of torque tools are available?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "The selector includes Battery Torque Tools (B-RAD, DB-RAD, V-RAD), Electric Torque Tools (E-RAD, E-RAD BLU), Pneumatic Torque Tools, Hydraulic Torque Wrenches (Square Drive and Low-Profile Cassette), and Hydraulic Bolt Tensioners."
+          text: "The selector includes Battery Torque Tools (B-RAD, DB-RAD, V-RAD), Electric Torque Tools (E-RAD, E-RAD BLU), and Pneumatic Torque Tools."
         }
       }
     ]

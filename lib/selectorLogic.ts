@@ -26,10 +26,12 @@ function confidenceFromScore(score: number): ToolRecommendation["confidence"] {
 }
 
 function torqueFitScore(tool: ToolData, torqueNm: number): number {
-  const { min, max } = tool.torqueRange;
-  const midpoint = (min + max) / 2;
+  // Tool torque ranges are stored in ft-lb, convert to Nm for comparison
+  const toolMinNm = toNewtonMeters(tool.torqueRange.min, "ft-lb");
+  const toolMaxNm = toNewtonMeters(tool.torqueRange.max, "ft-lb");
+  const midpoint = (toolMinNm + toolMaxNm) / 2;
   const deviation = Math.abs(torqueNm - midpoint);
-  const range = Math.max(1, max - min);
+  const range = Math.max(1, toolMaxNm - toolMinNm);
   const normalized = Math.max(0, 1 - deviation / range);
   return Math.round(normalized * 30);
 }
@@ -57,7 +59,8 @@ function prefersHydraulicForTurnaround(application: ToolSelectorInput["applicati
 }
 
 function toolSupportsConfined(tool: ToolData) {
-  return tool.category === "hydraulic_torque_wrench_cassette";
+  // No hydraulic tools available, so no confined space support
+  return false;
 }
 
 function fastenerIsLarge(sizeMm: number) {
@@ -89,7 +92,7 @@ function matchesPowerPreference(tool: ToolData, powerPreference: ToolSelectorInp
     return isVRadTool(tool);
   }
   
-  // For other preferences (battery, air, hydraulic), match by powerSource
+  // For other preferences (battery, air), match by powerSource
   // But exclude V-RAD from battery matches since V-RAD should only match "electric"
   if (powerPreference === "battery") {
     return tool.powerSource === "battery" && !isVRadTool(tool);
@@ -125,12 +128,31 @@ function getIndustryToolPreference(
       "e-rad-blu-5000": "preferred",
       "e-rad-blu-8000": "preferred",
       "e-rad-blu-11000": "preferred",
-      "hydraulic-tensioner": "preferred",
       "v-rad-300": "allowed",
       "v-rad-600": "allowed",
       "v-rad-900": "allowed",
       "v-rad-1200": "allowed",
       "v-rad-2000": "allowed",
+      "b-rad-300": "allowed",
+      "b-rad-600": "allowed",
+      "b-rad-900": "allowed",
+      "b-rad-1200": "allowed",
+      "b-rad-1500": "allowed",
+      "b-rad-2000": "allowed",
+      "b-rad-3000": "allowed",
+      "b-rad-5000": "allowed",
+      "b-rad-xtreme-3000": "allowed",
+      "b-rad-xtreme-6000": "allowed",
+      "b-rad-xtreme-9000": "allowed",
+      "b-rad-xtreme-11000": "allowed",
+      "db-rad-700": "allowed",
+      "db-rad-1000": "allowed",
+      "db-rad-1500": "allowed",
+      "db-rad-2000": "allowed",
+      "db-rad-4000": "allowed",
+      "db-rad-6000": "allowed",
+      "db-rad-8000": "allowed",
+      "db-rad-11000": "allowed",
       "rad-pneumatic-300": "discouraged",
       "rad-pneumatic-600": "discouraged",
       "rad-pneumatic-900": "discouraged",
@@ -140,17 +162,6 @@ function getIndustryToolPreference(
       "rad-pneumatic-5000": "discouraged",
       "rad-pneumatic-8000": "discouraged",
       "rad-pneumatic-11000": "discouraged",
-      "torsionx-sd-2": "discouraged",
-      "torsionx-sd-4": "discouraged",
-      "torsionx-sd-8": "discouraged",
-      "torsionx-sd-16": "discouraged",
-      "torsionx-sd-32": "discouraged",
-      "torsionx-sd-64": "discouraged",
-      "torsionx-lp-2": "discouraged",
-      "torsionx-lp-4": "discouraged",
-      "torsionx-lp-8": "discouraged",
-      "torsionx-lp-16": "discouraged",
-      "torsionx-lp-32": "discouraged"
     },
     mining: {
       "rad-pneumatic-300": "preferred",
@@ -173,6 +184,7 @@ function getIndustryToolPreference(
       "b-rad-xtreme-3000": "preferred",
       "b-rad-xtreme-6000": "preferred",
       "b-rad-xtreme-9000": "preferred",
+      "b-rad-xtreme-11000": "preferred",
       "db-rad-700": "preferred",
       "db-rad-1000": "preferred",
       "db-rad-1500": "preferred",
@@ -181,12 +193,6 @@ function getIndustryToolPreference(
       "db-rad-6000": "preferred",
       "db-rad-8000": "preferred",
       "db-rad-11000": "preferred",
-      "torsionx-sd-2": "allowed",
-      "torsionx-sd-4": "allowed",
-      "torsionx-sd-8": "allowed",
-      "torsionx-sd-16": "allowed",
-      "torsionx-sd-32": "allowed",
-      "torsionx-sd-64": "allowed",
       "e-rad-300": "discouraged",
       "e-rad-600": "discouraged",
       "e-rad-900": "discouraged",
@@ -204,21 +210,8 @@ function getIndustryToolPreference(
       "e-rad-blu-5000": "discouraged",
       "e-rad-blu-8000": "discouraged",
       "e-rad-blu-11000": "discouraged",
-      "hydraulic-tensioner": "discouraged"
     },
     oil_gas: {
-      "torsionx-sd-2": "preferred",
-      "torsionx-sd-4": "preferred",
-      "torsionx-sd-8": "preferred",
-      "torsionx-sd-16": "preferred",
-      "torsionx-sd-32": "preferred",
-      "torsionx-sd-64": "preferred",
-      "torsionx-lp-2": "preferred",
-      "torsionx-lp-4": "preferred",
-      "torsionx-lp-8": "preferred",
-      "torsionx-lp-16": "preferred",
-      "torsionx-lp-32": "preferred",
-      "hydraulic-tensioner": "preferred",
       "b-rad-300": "allowed",
       "b-rad-600": "allowed",
       "b-rad-900": "allowed",
@@ -230,6 +223,7 @@ function getIndustryToolPreference(
       "b-rad-xtreme-3000": "allowed",
       "b-rad-xtreme-6000": "allowed",
       "b-rad-xtreme-9000": "allowed",
+      "b-rad-xtreme-11000": "allowed",
       "db-rad-700": "allowed",
       "db-rad-1000": "allowed",
       "db-rad-1500": "allowed",
@@ -266,11 +260,6 @@ function getIndustryToolPreference(
       "rad-pneumatic-11000": "discouraged"
     },
     petrochemical: {
-      "torsionx-lp-2": "preferred",
-      "torsionx-lp-4": "preferred",
-      "torsionx-lp-8": "preferred",
-      "torsionx-lp-16": "preferred",
-      "torsionx-lp-32": "preferred",
       "e-rad-blu-300": "preferred",
       "e-rad-blu-600": "preferred",
       "e-rad-blu-900": "preferred",
@@ -280,7 +269,6 @@ function getIndustryToolPreference(
       "e-rad-blu-5000": "preferred",
       "e-rad-blu-8000": "preferred",
       "e-rad-blu-11000": "preferred",
-      "hydraulic-tensioner": "allowed",
       "b-rad-300": "allowed",
       "b-rad-600": "allowed",
       "b-rad-900": "allowed",
@@ -292,6 +280,7 @@ function getIndustryToolPreference(
       "b-rad-xtreme-3000": "allowed",
       "b-rad-xtreme-6000": "allowed",
       "b-rad-xtreme-9000": "allowed",
+      "b-rad-xtreme-11000": "allowed",
       "rad-pneumatic-300": "discouraged",
       "rad-pneumatic-600": "discouraged",
       "rad-pneumatic-900": "discouraged",
@@ -323,6 +312,15 @@ function getIndustryToolPreference(
       "b-rad-xtreme-3000": "preferred",
       "b-rad-xtreme-6000": "preferred",
       "b-rad-xtreme-9000": "preferred",
+      "b-rad-xtreme-11000": "preferred",
+      "db-rad-700": "preferred",
+      "db-rad-1000": "preferred",
+      "db-rad-1500": "preferred",
+      "db-rad-2000": "preferred",
+      "db-rad-4000": "preferred",
+      "db-rad-6000": "preferred",
+      "db-rad-8000": "preferred",
+      "db-rad-11000": "preferred",
       "e-rad-300": "allowed",
       "e-rad-600": "allowed",
       "e-rad-900": "allowed",
@@ -339,19 +337,7 @@ function getIndustryToolPreference(
       "e-rad-blu-3000": "allowed",
       "e-rad-blu-5000": "allowed",
       "e-rad-blu-8000": "allowed",
-      "e-rad-blu-11000": "allowed",
-      "hydraulic-tensioner": "discouraged",
-      "torsionx-sd-2": "discouraged",
-      "torsionx-sd-4": "discouraged",
-      "torsionx-sd-8": "discouraged",
-      "torsionx-sd-16": "discouraged",
-      "torsionx-sd-32": "discouraged",
-      "torsionx-sd-64": "discouraged",
-      "torsionx-lp-2": "discouraged",
-      "torsionx-lp-4": "discouraged",
-      "torsionx-lp-8": "discouraged",
-      "torsionx-lp-16": "discouraged",
-      "torsionx-lp-32": "discouraged"
+      "e-rad-blu-11000": "allowed"
     },
     manufacturing: {
       "e-rad-300": "preferred",
@@ -382,6 +368,15 @@ function getIndustryToolPreference(
       "b-rad-xtreme-3000": "preferred",
       "b-rad-xtreme-6000": "preferred",
       "b-rad-xtreme-9000": "preferred",
+      "b-rad-xtreme-11000": "preferred",
+      "db-rad-700": "preferred",
+      "db-rad-1000": "preferred",
+      "db-rad-1500": "preferred",
+      "db-rad-2000": "preferred",
+      "db-rad-4000": "preferred",
+      "db-rad-6000": "preferred",
+      "db-rad-8000": "preferred",
+      "db-rad-11000": "preferred",
       "rad-pneumatic-300": "allowed",
       "rad-pneumatic-600": "allowed",
       "rad-pneumatic-900": "allowed",
@@ -390,19 +385,7 @@ function getIndustryToolPreference(
       "rad-pneumatic-3000": "allowed",
       "rad-pneumatic-5000": "allowed",
       "rad-pneumatic-8000": "allowed",
-      "rad-pneumatic-11000": "allowed",
-      "hydraulic-tensioner": "discouraged",
-      "torsionx-sd-2": "discouraged",
-      "torsionx-sd-4": "discouraged",
-      "torsionx-sd-8": "discouraged",
-      "torsionx-sd-16": "discouraged",
-      "torsionx-sd-32": "discouraged",
-      "torsionx-sd-64": "discouraged",
-      "torsionx-lp-2": "discouraged",
-      "torsionx-lp-4": "discouraged",
-      "torsionx-lp-8": "discouraged",
-      "torsionx-lp-16": "discouraged",
-      "torsionx-lp-32": "discouraged"
+      "rad-pneumatic-11000": "allowed"
     },
     wind_energy: {
       "e-rad-blu-300": "preferred",
@@ -414,18 +397,6 @@ function getIndustryToolPreference(
       "e-rad-blu-5000": "preferred",
       "e-rad-blu-8000": "preferred",
       "e-rad-blu-11000": "preferred",
-      "hydraulic-tensioner": "preferred",
-      "torsionx-sd-2": "allowed",
-      "torsionx-sd-4": "allowed",
-      "torsionx-sd-8": "allowed",
-      "torsionx-sd-16": "allowed",
-      "torsionx-sd-32": "allowed",
-      "torsionx-sd-64": "allowed",
-      "torsionx-lp-2": "allowed",
-      "torsionx-lp-4": "allowed",
-      "torsionx-lp-8": "allowed",
-      "torsionx-lp-16": "allowed",
-      "torsionx-lp-32": "allowed",
       "b-rad-300": "allowed",
       "b-rad-600": "allowed",
       "b-rad-900": "allowed",
@@ -437,6 +408,7 @@ function getIndustryToolPreference(
       "b-rad-xtreme-3000": "allowed",
       "b-rad-xtreme-6000": "allowed",
       "b-rad-xtreme-9000": "allowed",
+      "b-rad-xtreme-11000": "allowed",
       "rad-pneumatic-300": "discouraged",
       "rad-pneumatic-600": "discouraged",
       "rad-pneumatic-900": "discouraged",
@@ -448,12 +420,6 @@ function getIndustryToolPreference(
       "rad-pneumatic-11000": "discouraged"
     },
     refineries: {
-      "torsionx-lp-2": "preferred",
-      "torsionx-lp-4": "preferred",
-      "torsionx-lp-8": "preferred",
-      "torsionx-lp-16": "preferred",
-      "torsionx-lp-32": "preferred",
-      "hydraulic-tensioner": "preferred",
       "e-rad-300": "allowed",
       "e-rad-600": "allowed",
       "e-rad-900": "allowed",
@@ -482,6 +448,7 @@ function getIndustryToolPreference(
       "b-rad-xtreme-3000": "allowed",
       "b-rad-xtreme-6000": "allowed",
       "b-rad-xtreme-9000": "allowed",
+      "b-rad-xtreme-11000": "allowed",
       "rad-pneumatic-300": "discouraged",
       "rad-pneumatic-600": "discouraged",
       "rad-pneumatic-900": "discouraged",
@@ -506,28 +473,22 @@ function applyGlobalRules(
   let adjustment = 0;
   const reasons: string[] = [];
 
-  // Critical accuracy → favor Electric or Tensioning
+  // Critical accuracy → favor Electric
   if (input.accuracyPriority === "critical") {
-    if (tool.category === "electric_torque_tool" || tool.category === "hydraulic_bolt_tensioner") {
+    if (tool.category === "electric_torque_tool") {
       adjustment += 15;
-      reasons.push("Critical accuracy requirement favors electric or tensioning systems.");
+      reasons.push("Critical accuracy requirement favors electric systems.");
     } else if (tool.category === "battery_torque_tool" || tool.category === "pneumatic_torque_tool") {
       adjustment -= 10;
-      reasons.push("Note: Critical accuracy may require electric or tensioning systems.");
+      reasons.push("Note: Critical accuracy may require electric systems.");
     }
   }
 
-  // Tight clearance → favor Cassette Hydraulic
+  // Tight clearance → note weight considerations
   if (input.environment === "confined_space") {
-    if (tool.category === "hydraulic_torque_wrench_cassette") {
-      adjustment += 12;
-      reasons.push("Low-profile cassette ideal for tight clearance.");
-    } else if (
-      tool.category === "hydraulic_torque_wrench_square_drive" ||
-      tool.weightClass === "heavy"
-    ) {
+    if (tool.weightClass === "heavy") {
       adjustment -= 8;
-      reasons.push("Note: Tight clearance may require low-profile cassette tooling.");
+      reasons.push("Note: Tight clearance may require lighter tooling.");
     }
   }
 
@@ -553,19 +514,12 @@ function applyGlobalRules(
     }
   }
 
-  // If torque > battery upper range → Hydraulic only
+  // If torque > battery upper range → note limitation
   const maxBatteryTorque = 11000; // DB-RAD 11000 upper limit
   if (torqueNm > maxBatteryTorque) {
     if (tool.category === "battery_torque_tool") {
       adjustment -= 20;
-      reasons.push("Torque requirement exceeds battery tool capacity; hydraulic recommended.");
-    } else if (
-      tool.category === "hydraulic_torque_wrench_square_drive" ||
-      tool.category === "hydraulic_torque_wrench_cassette" ||
-      tool.category === "hydraulic_bolt_tensioner"
-    ) {
-      adjustment += 8;
-      reasons.push("Hydraulic tooling required for torque above battery range.");
+      reasons.push("Torque requirement exceeds battery tool capacity.");
     }
   }
 
@@ -645,25 +599,13 @@ function scoreTool(tool: ToolData, input: ToolSelectorInput, torqueNm: number): 
   }
 
   if (prefersHydraulicForTurnaround(input.applicationType)) {
-    if (
-      tool.category === "hydraulic_torque_wrench_square_drive" ||
-      tool.category === "hydraulic_torque_wrench_cassette" ||
-      tool.category === "hydraulic_bolt_tensioner"
-    ) {
-      score += 12;
-      reasons.push("Hydraulic tooling supports flange and turnaround control.");
-    }
+    // Note: Hydraulic tools removed, but flange/turnaround applications still favor appropriate tooling
+    // Battery and electric tools can handle these applications
   }
 
   if (fastenerIsLarge(input.fastenerSizeMm)) {
-    if (
-      tool.category === "hydraulic_torque_wrench_square_drive" ||
-      tool.category === "hydraulic_torque_wrench_cassette" ||
-      tool.category === "hydraulic_bolt_tensioner"
-    ) {
-      score += 10;
-      reasons.push("Large fasteners benefit from hydraulic tooling.");
-    }
+    // Large fasteners can be handled by battery and electric tools
+    // No special scoring needed since hydraulic tools are removed
   }
 
   if (input.accuracyPriority === "critical") {
@@ -700,9 +642,12 @@ export function selectTools(input: ToolSelectorInput): SelectionResult {
   const torqueNm = toNewtonMeters(input.requiredTorque, input.torqueUnit);
   const notes: string[] = [];
 
-  let candidates = TOOL_DATA.filter(
-    (tool) => torqueNm >= tool.torqueRange.min && torqueNm <= tool.torqueRange.max
-  );
+  // Tool torque ranges are stored in ft-lb, convert to Nm for comparison
+  let candidates = TOOL_DATA.filter((tool) => {
+    const toolMinNm = toNewtonMeters(tool.torqueRange.min, "ft-lb");
+    const toolMaxNm = toNewtonMeters(tool.torqueRange.max, "ft-lb");
+    return torqueNm >= toolMinNm && torqueNm <= toolMaxNm;
+  });
 
   // When explicit power preference is set, ONLY show tools matching that preference
   // User's explicit requirement takes absolute priority

@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     default: "Torque Tool Selector | Industrial Bolting Tool Selection | TorqKing",
     template: "%s | TorqKing"
   },
-  description: "Select the right torque tool or hydraulic bolt tensioner for your industrial bolting application. Expert recommendations for aerospace, oil & gas, mining, petrochemical, refineries, railway, manufacturing, and wind energy industries.",
+  description: "Select the right torque tool for your industrial bolting application. Expert recommendations for aerospace, oil & gas, mining, petrochemical, refineries, railway, manufacturing, and wind energy industries.",
   keywords: [
     "torque tool selector",
     "industrial bolting tools",
@@ -20,7 +20,6 @@ export const metadata: Metadata = {
     "battery torque tool",
     "electric torque wrench",
     "pneumatic torque tool",
-    "bolt tensioner",
     "torque tool rental",
     "industrial bolting",
     "flange bolting",
@@ -32,7 +31,6 @@ export const metadata: Metadata = {
     "railway bolting",
     "wind energy bolting",
     "RAD torque tools",
-    "TorsionX hydraulic",
     "B-RAD",
     "DB-RAD",
     "E-RAD",
@@ -56,7 +54,7 @@ export const metadata: Metadata = {
     url: baseUrl,
     siteName: "TorqKing",
     title: "Torque Tool Selector | Industrial Bolting Tool Selection",
-    description: "Select the right torque tool or hydraulic bolt tensioner for your industrial bolting application. Expert recommendations for aerospace, oil & gas, mining, petrochemical, refineries, railway, manufacturing, and wind energy industries.",
+    description: "Select the right torque tool for your industrial bolting application. Expert recommendations for aerospace, oil & gas, mining, petrochemical, refineries, railway, manufacturing, and wind energy industries.",
     images: [
       {
         url: `${baseUrl}/torqking-logo.png.png`,
@@ -69,7 +67,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Torque Tool Selector | Industrial Bolting Tool Selection",
-    description: "Select the right torque tool or hydraulic bolt tensioner for your industrial bolting application.",
+    description: "Select the right torque tool for your industrial bolting application.",
     images: [`${baseUrl}/torqking-logo.png.png`]
   },
   robots: {

@@ -63,8 +63,7 @@ const LABELS: Record<string, string> = {
   battery: "Battery",
   electric: "Electric",
   electronic: "Electronic",
-  air: "Air",
-  hydraulic: "Hydraulic"
+  air: "Air"
 };
 
 export default function ResultsPage({
