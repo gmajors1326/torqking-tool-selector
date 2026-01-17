@@ -103,13 +103,13 @@ export default function ResultsPage({
       <header className="space-y-4">
         <nav aria-label="Breadcrumb">
           <div className="flex flex-col gap-3">
-            <a href="https://www.thetorqking.com" target="_blank" rel="noopener noreferrer" className="h-16 flex items-center" aria-label="Visit TorqKing.com">
+            <a href="https://www.thetorqking.com" target="_blank" rel="noopener noreferrer" className="h-20 flex items-center" aria-label="Visit TorqKing.com">
               <img
                 src="/torqking-logo.png.png"
                 alt="TorqKing - Industrial Torque Tool Selector and Bolting Solutions"
                 className="h-full w-auto object-contain"
-                width={160}
-                height={64}
+                width={200}
+                height={80}
               />
             </a>
             <a className="button-secondary text-xs px-4 py-2 w-fit" href="/" aria-label="Return to tool selector">

@@ -77,14 +77,14 @@ export default function HomePage() {
       <div className="space-y-8">
       <header className="space-y-4">
         <div className="flex items-center">
-          <div className="h-20 flex items-center">
+          <div className="h-24 flex items-center">
             <a href="https://www.thetorqking.com" target="_blank" rel="noopener noreferrer" aria-label="Visit TorqKing.com">
               <img
                 src="/torqking-logo.png.png"
                 alt="TorqKing - Industrial Torque Tool Selector and Bolting Solutions"
                 className="h-full w-auto object-contain"
-                width={200}
-                height={80}
+                width={240}
+                height={96}
                 loading="eager"
               />
             </a>
