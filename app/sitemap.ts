@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://torqking.com";
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://torqking-tool-selector.vercel.app";
 
   return [
     {
@@ -9,12 +9,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 1.0
-    },
-    {
-      url: `${baseUrl}/results`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.5
     }
+    // Dynamic routes like /results are intentionally excluded as they are no-indexed
   ];
 }

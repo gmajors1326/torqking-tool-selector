@@ -195,6 +195,25 @@ export default function ResultsPage({
           torqueUnit={input.torqueUnit}
         />
       </section>
+
+      <div className="mt-8 rounded-lg border border-industrial-200 bg-industrial-50 p-6 dark:border-industrial-700 dark:bg-industrial-900">
+        <p className="text-center text-base font-medium text-industrial-900 dark:text-industrial-100">
+          Get the exact torque tool for your application — matched by real-world load, not guesswork.
+        </p>
+        <p className="mt-2 text-center text-sm text-industrial-700 dark:text-industrial-300">
+          Rentals, sales, and calibrated tools — spec'd by a torque specialist.
+        </p>
+        <div className="mt-6 flex justify-center">
+          <a
+            href="https://www.thetorqking.com/torque-tool-rental-request"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="button-primary"
+          >
+            Rent or Buy This Tool
+          </a>
+        </div>
+      </div>
     </div>
   );
 }

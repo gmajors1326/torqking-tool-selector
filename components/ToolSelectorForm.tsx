@@ -315,6 +315,7 @@ export default function ToolSelectorForm() {
           Generate Recommendations
         </button>
       </div>
+
     </section>
   );
 }

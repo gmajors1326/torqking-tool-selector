@@ -3,8 +3,8 @@ import type { ReactNode } from "react";
 import "./globals.css";
 
 // Get base URL from environment variable, fallback to default
-const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://torqking.com";
-const mainSiteUrl = process.env.NEXT_PUBLIC_MAIN_SITE_URL || "https://torqking.com";
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://torqking-tool-selector.vercel.app";
+const mainSiteUrl = process.env.NEXT_PUBLIC_MAIN_SITE_URL || "https://www.thetorqking.com";
 const googleVerification = process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION;
 
 export const metadata: Metadata = {
