@@ -113,18 +113,27 @@ export default function ToolSelectorForm() {
   };
 
   const handleClearAll = () => {
-    setForm({
+    const defaultValues: ToolSelectorInput = {
       requiredTorque: 1000,
       torqueUnit: "ft-lb",
-      fastenerSizeMm: FASTENER_OPTIONS[0]?.sizeMm ?? 0,
+      fastenerSizeMm: FASTENER_OPTIONS[0]?.sizeMm ?? 19.05,
       industry: "oil_gas",
       applicationType: "flange",
       powerPreference: "hydraulic",
       environment: "field",
       accuracyPriority: "high",
       purchaseIntent: "rental"
-    });
+    };
+    setForm(defaultValues);
     setErrors([]);
+    // Force focus on first input to show the reset worked
+    setTimeout(() => {
+      const firstInput = document.getElementById("requiredTorque");
+      if (firstInput) {
+        firstInput.focus();
+        firstInput.blur();
+      }
+    }, 0);
   };
 
   return (
