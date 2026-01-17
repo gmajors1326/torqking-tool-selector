@@ -102,7 +102,7 @@ export default function ResultsPage({
     <div className="space-y-8">
       <header className="space-y-4">
         <nav aria-label="Breadcrumb">
-          <div className="flex items-center gap-4">
+          <div className="flex flex-col gap-3">
             <a href="https://www.thetorqking.com" target="_blank" rel="noopener noreferrer" className="h-16 flex items-center" aria-label="Visit TorqKing.com">
               <img
                 src="/torqking-logo.png.png"
@@ -112,8 +112,8 @@ export default function ResultsPage({
                 height={64}
               />
             </a>
-            <a className="button-secondary" href="/" aria-label="Return to tool selector">
-              Back to Selector
+            <a className="button-secondary text-xs px-4 py-2 w-fit" href="/" aria-label="Return to tool selector">
+              ← Back to Selector
             </a>
           </div>
         </nav>
