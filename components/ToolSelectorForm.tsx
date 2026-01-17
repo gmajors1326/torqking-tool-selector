@@ -112,29 +112,6 @@ export default function ToolSelectorForm() {
     router.push(`/results?${params.toString()}`);
   };
 
-  const handleClearAll = () => {
-    const defaultValues: ToolSelectorInput = {
-      requiredTorque: 1000,
-      torqueUnit: "ft-lb",
-      fastenerSizeMm: FASTENER_OPTIONS[0]?.sizeMm ?? 19.05,
-      industry: "oil_gas",
-      applicationType: "flange",
-      powerPreference: "hydraulic",
-      environment: "field",
-      accuracyPriority: "high",
-      purchaseIntent: "rental"
-    };
-    setForm(defaultValues);
-    setErrors([]);
-    // Force focus on first input to show the reset worked
-    setTimeout(() => {
-      const firstInput = document.getElementById("requiredTorque");
-      if (firstInput) {
-        firstInput.focus();
-        firstInput.blur();
-      }
-    }, 0);
-  };
 
   return (
     <section className="grid gap-6 lg:grid-cols-[1.1fr,0.9fr]">
@@ -331,20 +308,13 @@ export default function ToolSelectorForm() {
         </div>
       )}
 
-      <div className="flex flex-col gap-4 lg:col-span-2">
-        <div className="flex items-center justify-between gap-4">
-          <p className="muted">
-            Recommendations prioritize safety and conservative tool selection.
-          </p>
-          <button type="button" className="button-primary" onClick={handleSubmit}>
-            Generate Recommendations
-          </button>
-        </div>
-        <div className="flex justify-end">
-          <button type="button" className="button-secondary" onClick={handleClearAll}>
-            Clear All
-          </button>
-        </div>
+      <div className="flex items-center justify-between gap-4 lg:col-span-2">
+        <p className="muted">
+          Recommendations prioritize safety and conservative tool selection.
+        </p>
+        <button type="button" className="button-primary" onClick={handleSubmit}>
+          Generate Recommendations
+        </button>
       </div>
 
     </section>
