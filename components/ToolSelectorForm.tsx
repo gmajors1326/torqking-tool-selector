@@ -112,6 +112,21 @@ export default function ToolSelectorForm() {
     router.push(`/results?${params.toString()}`);
   };
 
+  const handleClearAll = () => {
+    setForm({
+      requiredTorque: 1000,
+      torqueUnit: "ft-lb",
+      fastenerSizeMm: FASTENER_OPTIONS[0]?.sizeMm ?? 0,
+      industry: "oil_gas",
+      applicationType: "flange",
+      powerPreference: "hydraulic",
+      environment: "field",
+      accuracyPriority: "high",
+      purchaseIntent: "rental"
+    });
+    setErrors([]);
+  };
+
   return (
     <section className="grid gap-6 lg:grid-cols-[1.1fr,0.9fr]">
       <div className="card p-6">
@@ -307,13 +322,20 @@ export default function ToolSelectorForm() {
         </div>
       )}
 
-      <div className="flex items-center justify-between gap-4 lg:col-span-2">
-        <p className="muted">
-          Recommendations prioritize safety and conservative tool selection.
-        </p>
-        <button type="button" className="button-primary" onClick={handleSubmit}>
-          Generate Recommendations
-        </button>
+      <div className="flex flex-col gap-4 lg:col-span-2">
+        <div className="flex items-center justify-between gap-4">
+          <p className="muted">
+            Recommendations prioritize safety and conservative tool selection.
+          </p>
+          <button type="button" className="button-primary" onClick={handleSubmit}>
+            Generate Recommendations
+          </button>
+        </div>
+        <div className="flex justify-end">
+          <button type="button" className="button-secondary" onClick={handleClearAll}>
+            Clear All
+          </button>
+        </div>
       </div>
 
     </section>
