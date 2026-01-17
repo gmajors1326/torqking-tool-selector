@@ -16,24 +16,40 @@ When you see the error "URL not in property" in Google Search Console, it means 
 
 ### 2. Verify Ownership
 
-You have several options to verify ownership:
+**⚠️ IMPORTANT: Use HTML Meta Tag method (NOT HTML file)**
 
-#### Option A: HTML Meta Tag (Recommended)
+The HTML file method often fails with Next.js/Vercel deployments. Use the meta tag method instead:
 
-1. Google will provide you with a meta tag like:
-   ```html
-   <meta name="google-site-verification" content="YOUR_VERIFICATION_CODE" />
-   ```
+#### Step-by-Step: HTML Meta Tag Verification
 
-2. Add this to your Vercel environment variables:
-   - Go to **Vercel Dashboard → Your Project → Settings → Environment Variables**
-   - Add: `NEXT_PUBLIC_GOOGLE_VERIFICATION` = `YOUR_VERIFICATION_CODE`
-   - Select **Production** environment
-   - Click **Save**
+1. **In Google Search Console**, when prompted to verify:
+   - Click **"Alternate methods"** or **"HTML tag"** (not HTML file)
+   - Google will show you a meta tag like:
+     ```html
+     <meta name="google-site-verification" content="abc123xyz789..." />
+     ```
+   - Copy ONLY the content value (the part after `content="` and before `"`)
 
-3. Redeploy your site (or wait for automatic deployment)
+2. **Add to Vercel Environment Variables**:
+   - Go to [Vercel Dashboard](https://vercel.com/dashboard)
+   - Select your project: **torqking-tool-selector**
+   - Go to **Settings → Environment Variables**
+   - Click **"Add New"**
+   - **Key**: `NEXT_PUBLIC_GOOGLE_VERIFICATION`
+   - **Value**: Paste the verification code (just the code, not the full meta tag)
+   - **Environment**: Select **Production** (and optionally Preview/Development)
+   - Click **"Save"**
 
-4. Go back to Google Search Console and click **"Verify"**
+3. **Redeploy**:
+   - Go to **Deployments** tab
+   - Click the **"..."** menu on the latest deployment
+   - Click **"Redeploy"** (or wait for automatic deployment on next push)
+
+4. **Verify in Google Search Console**:
+   - Wait 2-3 minutes after deployment completes
+   - Go back to Google Search Console
+   - Click **"Verify"** button
+   - ✅ Should show "Ownership verified"
 
 #### Option B: HTML File Upload
 
