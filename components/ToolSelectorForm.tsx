@@ -70,7 +70,7 @@ export default function ToolSelectorForm() {
   const [form, setForm] = useState<ToolSelectorInput>({
     requiredTorque: 1000,
     torqueUnit: "ft-lb",
-    fastenerSizeMm: FASTENER_OPTIONS[0]?.sizeMm ?? 0,
+    fastenerSizeMm: FASTENER_OPTIONS[0]?.sizeMm ?? 19.05,
     industry: "oil_gas",
     applicationType: "flange",
     powerPreference: "hydraulic",
@@ -89,7 +89,11 @@ export default function ToolSelectorForm() {
     setForm((prev) => ({ ...prev, [key]: value }));
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (e?: React.MouseEvent<HTMLButtonElement>) => {
+    if (e) {
+      e.preventDefault();
+    }
+    
     const validation = validateInput(form);
     if (validation.length > 0) {
       setErrors(validation);
