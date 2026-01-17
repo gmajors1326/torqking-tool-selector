@@ -96,7 +96,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <head>
         <link rel="canonical" href={baseUrl} />
       </head>
-      <body suppressHydrationWarning>
+      <body suppressHydrationWarning style={{ backgroundColor: '#1A1A1A', color: '#FFFFFF', minHeight: '100vh' }}>
         <main>{children}</main>
       </body>
     </html>
