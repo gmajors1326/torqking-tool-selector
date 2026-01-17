@@ -18,20 +18,24 @@ When you see the error "URL not in property" in Google Search Console, it means 
 
 ### 2. Verify Ownership
 
-After clicking "Continue", Google will ask you to verify ownership. You'll see several verification method options:
+After clicking "Continue", Google will show you the verification screen. You'll see:
 
-**⚠️ IMPORTANT: Select "HTML tag" method**
+- **"HTML file"** is shown as the recommended/default method (at the top)
+- **"Other verification methods"** section below (collapsed)
 
+**⚠️ IMPORTANT: Use "HTML tag" method (NOT HTML file)**
+
+- ❌ **"HTML file"** - Often fails with Next.js/Vercel deployments (don't use this)
 - ❌ **"Domain name provider" (DNS)** - Won't work for `vercel.app` subdomains
-- ❌ **"HTML file"** - Often fails with Next.js/Vercel deployments  
-- ✅ **"HTML tag"** - Best option for Vercel deployments (select this one!)
+- ✅ **"HTML tag"** - Best option for Vercel deployments (use this!)
 
 #### Step-by-Step: HTML Meta Tag Verification
 
-**Step 1: Select HTML Tag Method**
-- After entering your URL and clicking "Continue", you'll see verification options
-- Look for **"HTML tag"** option and select it
-- Google will show you a meta tag like:
+**Step 1: Expand "HTML tag" Method**
+- Scroll down to the **"Other verification methods"** section
+- Click on **"HTML tag"** to expand it
+- It will show: "Add a meta tag to your site's home page"
+- Google will display a meta tag like:
   ```html
   <meta name="google-site-verification" content="abc123xyz789..." />
   ```
@@ -40,6 +44,7 @@ After clicking "Continue", Google will ask you to verify ownership. You'll see s
 - Copy ONLY the content value (the code between the quotes)
 - Example: If the tag shows `content="abc123xyz789"`, copy: `abc123xyz789`
 - Don't copy the entire meta tag, just the code inside the quotes
+- You'll see something like: `google621a7f5d3cfad65a` (your code will be different)
 
 **Step 3: Add to Vercel Environment Variables**
 - Go to [Vercel Dashboard](https://vercel.com/dashboard)
