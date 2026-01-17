@@ -103,7 +103,7 @@ export default function ResultsPage({
       <header className="space-y-4">
         <nav aria-label="Breadcrumb">
           <div className="flex flex-col gap-3">
-            <a href="https://www.thetorqking.com" target="_blank" rel="noopener noreferrer" className="h-20 flex items-center pb-[5px]" aria-label="Visit TorqKing.com">
+            <a href="https://www.thetorqking.com" target="_blank" rel="noopener noreferrer" className="h-20 flex items-center mb-[5px]" aria-label="Visit TorqKing.com">
               <img
                 src="/torqking-logo.png.png"
                 alt="TorqKing - Industrial Torque Tool Selector and Bolting Solutions"
